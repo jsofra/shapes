@@ -15,7 +15,7 @@
   (boundary [geometry] (.boundary geometry))
   (buffer [geometry distance] (.buffer geometry distance))
   (convex-hull [geometry] (.convexHull geometry))
-  (internal-envelope [geometry] (.internalEnvelope geometry))
+  (bounding-box [geometry] (.getEnvelope geometry))
 
   proto/SpatialRelations
   (intersects? [this other] (.intersects this other))
@@ -36,7 +36,7 @@
   proto/Locatable 
   (centroid [geometry] (.getCentroid geometry))
   (interior-point [geometry] (.getInteriorPoint geometry))
-  (envelope [geometry] (.getEnvelopeInternal geometry ))
+  (envelope [geometry] (.getEnvelopeInternal geometry))
   
   proto/SimplicityTest
   (simple? [geometry] (.isSimple geometry))
