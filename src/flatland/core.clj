@@ -104,11 +104,78 @@
   A shape is simple if the only self-intersections are at boundary points"
   identity)
 
-(op/defshape point "point")
-(op/defshape line-string "line-string")
-(op/defshape linear-ring "linear-ring")
-(op/defshape polygon "polygon")
-(op/defshape multi-point "multi-point")
-(op/defshape multi-line-string "multi-line-string")
-(op/defshape multi-polygon "multi-polygon")
-(op/defshape geometry-collection "geometry-collection")
+(op/defshape point
+  "Creates a point shape map.
+  e.g.
+  (point {:x 1 :y 1})
+  ;=> {:shape :point :coords {:x 1 :y 1}}")
+
+(op/defshape line-string
+  "Creates a line-string shape map.
+  e.g.
+  (line-string [{:x 2 :y 8} {:x 4 :y 3}])
+  ;=> {:shape :line-string :coords [{:x 2 :y 8} {:x 4 :y 3}]}")
+
+(op/defshape linear-ring
+  "Creates a linear-ring shape map.
+  e.g.
+  (linear-ring [{:x 0 :y 0} {:x 10 :y 0} {:x 10 :y 10}
+                {:x 0 :y 10} {:x 0 :y 0}])
+  ;=> {:shape :linear-ring
+       :coords [{:x 0 :y 0} {:x 10 :y 0} {:x 10 :y 10}
+                {:x 0 :y 10} {:x 0 :y 0}]}")
+
+(op/defshape polygon
+  "Creates a polygon shape map.
+  e.g.
+  (polygon {:shell [{:x 1 :y 1} {:x 100 :y 1} {:x 100 :y 100}
+                    {:x 1 :y 100} {:x 1 :y 1}]
+            :holes [[{:x 5 :y 5} {:x 20 :y 5} {:x 20 :y 20}
+                     {:x 5 :y 20} {:x 5 :y 5}]
+                    [{:x 50 :y 50} {:x 80 :y 50} {:x 80 :y 80}
+                     {:x 50 :y 80} {:x 50 :y 50}]]})
+  ;=> {:shape :polygon
+       :coords {:shell [{:x 1 :y 1} {:x 100 :y 1} {:x 100 :y 100}
+                    {:x 1 :y 100} {:x 1 :y 1}]
+            :holes [[{:x 5 :y 5} {:x 20 :y 5} {:x 20 :y 20}
+                     {:x 5 :y 20} {:x 5 :y 5}]
+                    [{:x 50 :y 50} {:x 80 :y 50} {:x 80 :y 80}
+                     {:x 50 :y 80} {:x 50 :y 50}]]}}")
+
+(op/defshape multi-point
+  "Creates a multi-point shape map.
+  e.g.
+  (multi-point [{:x 1 :y 20} {:x 45 :y 5} {:x 10 :y 34}])
+  ;=> {:shape :multi-point
+       :coords [{:x 1 :y 20} {:x 45 :y 5} {:x 10 :y 34}]}")
+
+(op/defshape multi-line-string
+  "Creates a multi-line-string shape map.
+  e.g.
+  (multi-line-string [[{:x 5 :y 5} {:x 2 :y 5} {:x 9 :y 4}]
+                          [{:x 6 :y 4} {:x 8 :y 3} {:x 2 :y 3}]])
+  ;=> {:shape :multi-line-string
+       :coords [[{:x 5 :y 5} {:x 2 :y 5} {:x 9 :y 4}]
+                          [{:x 6 :y 4} {:x 8 :y 3} {:x 2 :y 3}]]}")
+
+(op/defshape multi-polygon
+  "Creates a multi-polygon shape map.
+  e.g.
+  (multi-polygon [{:shell [{:x 1 :y 1} {:x 100 :y 1} {:x 100 :y 100}
+                           {:x 1 :y 100} {:x 1 :y 1}]}
+                  {:shell [{:x 4 :y 4} {:x 10 :y 4} {:x 10 :y 10}
+                           {:x 4 :y 10} {:x 4 :y 4}]}])
+  ;=> {:shape :multi-polygon
+       :coords[{:shell [{:x 1 :y 1} {:x 100 :y 1} {:x 100 :y 100}
+                           {:x 1 :y 100} {:x 1 :y 1}]}
+                  {:shell [{:x 4 :y 4} {:x 10 :y 4} {:x 10 :y 10}
+                           {:x 4 :y 10} {:x 4 :y 4}]}]} ")
+
+(op/defshape geometry-collection
+  "Creates a geometry-collection shape map.
+  e.g.
+  (geometry-collection [(point {:x 2 :y 8})
+                        (line-string [{:x 1 :y 1} {:x 10 :y 10}])])
+  ;=> {:shape :geometry-collection
+       :coords [{:shape :point :coords {:x 2 :y 8}}
+                {:shape :line-string :coords [{:x 1 :y 1} {:x 10 :y 10}]}]}")
