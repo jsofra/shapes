@@ -55,7 +55,10 @@
   Disjoint shapes have no points in common.")
 (op/defspatialrel contains?
   "Returns true if this shape entirely contains all the points of the other
-  without touching, false otherwises ")
+  without touching, false otherwise.")
+(op/defspatialrel within?
+  "Returns true if the points of this shape are entirely within the other,
+  false ohterwise.")
 (op/defspatialrel covers?
   "Returns true if this shape entirely covers all the points of the other,
   they may touch, false otherwises " )
@@ -66,6 +69,10 @@
   "Returns true if this shape crosses the other shape, false otherwise.")
 (op/defspatialrel overlaps?
   "Returns true if this shape overlaps the other shape, false otherwise.")
+(op/defspatialrel touches?
+  "Returns true if this shape touches the other, false otherwise.
+  The two shapes touch if they haave at least one point in common,
+  but their interiors do not intersect.")
 (op/defspatialrel relate? "relate?")
 (op/defspatialrel within-distance?
   "Tests whether the distance from this shape to the other is less than
