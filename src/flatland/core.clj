@@ -1,8 +1,8 @@
-(ns euclij.core
+(ns flatland.core
   "
-  euclij is a geometry library for Clojure.
+  flatland is a geometry library for Clojure.
 
-  euclij allows for representation of geometry as Clojure data and a number of
+  flatland allows for representation of geometry as Clojure data and a number of
   operations on that data.
 
   The supported operations include Constructive Solid Geometry operations,
@@ -12,10 +12,10 @@
   {:author "James Sofra"}
   
   (:refer-clojure :exclude [contains?])
-  (:require [euclij.protocols :as proto]
-            [euclij.op-defs :as op]
+  (:require [flatland.protocols :as proto]
+            [flatland.op-defs :as op]
             [clj-jts.core :as jts])
-  (:use euclij.jts-impl))
+  (:use flatland.jts-impl))
 
 (def ^:dynamic *geometry-converter* jts/geometry)
 

@@ -1,7 +1,7 @@
-(ns euclij.jts-impl
+(ns flatland.jts-impl
   (:refer-clojure :exclude [contains?])
   (:import [com.vividsolutions.jts.geom Geometry])
-  (:require [euclij.protocols :as proto]
+  (:require [flatland.protocols :as proto]
             [clj-jts.core :as jts]))
 
 (extend-type Geometry

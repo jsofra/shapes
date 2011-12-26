@@ -1,4 +1,4 @@
-(ns euclij.protocols
+(ns flatland.protocols
   (:refer-clojure :exclude [contains?]))
 
 (defprotocol ConstructiveSolidGeometry
