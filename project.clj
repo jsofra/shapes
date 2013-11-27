@@ -1,4 +1,6 @@
-(defproject meridian/flatland "0.0.1-SNAPSHOT"
-  :description "flatland is a geometry library for Clojure. It allows for Constructive Solid Geometry operations and more."
-  :dependencies [[org.clojure/clojure "1.3.0"]
-                 [meridian/clj-jts "0.0.1-SNAPSHOT"]])
+(defproject meridian/shapes "0.0.2-SNAPSHOT"
+  :description "Meridian Shapes is a geometry library for Clojure. It allows for Constructive Solid Geometry operations and more."
+  :url "http://github.com/jsofra/shapes"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :dependencies [[org.clojure/clojure "1.5.1"]])

@@ -1,4 +1,4 @@
-(ns flatland.protocols
+(ns meridian.shapes.protocols
   (:refer-clojure :exclude [contains?]))
 
 (defprotocol ConstructiveSolidGeometry
@@ -31,7 +31,7 @@
   (area [geometry])
   (length [geometry]))
 
-(defprotocol Locatable 
+(defprotocol Locatable
   (centroid [geometry])
   (interior-point [geometry])
   (envelope [geometry]))
@@ -39,5 +39,5 @@
 (defprotocol SimplicityTest
   (simple? [geometry]))
 
-(defprotocol GeometryConversions
-  (->shape-data [geom]))
+(defprotocol Coercive
+  (coerce [geometry]))
