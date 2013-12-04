@@ -160,6 +160,8 @@
 
 ;; Define some records to represent geometry
 ;; The different types are provided so that they can be individually dispatched on
+;; All the shapes follow the structure of the geoJSON specification
+;; http://www.geojson.org/
 
 (defrecord Point [type coordinates])
 (defrecord LineString [type coordinates])
@@ -170,13 +172,52 @@
 (defrecord MultiPolygon [type coordinates])
 (defrecord GeometryCollection [type geometries])
 
-(defn point [coordinates](->Point :Point coordinates))
-(defn line-string [coordinates](->LineString :LineString coordinates))
-(defn linear-ring [coordinates](->LinearRing :LinearRing coordinates))
-(defn polygon [coordinates](->Polygon :Polygon coordinates))
-(defn multi-point [coordinates](->MultiPoint :MultiPoint coordinates))
-(defn multi-line-string [coordinates](->MultiLineString :MultiLineString coordinates))
-(defn multi-polygon [coordinates](->MultiPolygon :MultiPolygon coordinates))
+(defn point
+  "Creates a Point record with the structure:
+     {:type :Point :coordinates [1 2]}.
+
+  http://www.geojson.org/geojson-spec.html#point"
+  [coordinates] (->Point :Point coordinates))
+
+(defn line-string
+  "Creates a LineString record with the structure:
+     {:type :LineString :coordinates [[1 2] [3 4]]}.
+
+  http://www.geojson.org/geojson-spec.html#linestring"
+  [coordinates] (->LineString :LineString coordinates))
+
+(defn linear-ring
+  "Creates a LinearRing record with the structure:
+     {:type :LinearRing :coordinates [[1 2] [3 4] [5 6] [1 2]]}
+   The first and last coord must be the same.
+
+  http://www.geojson.org/geojson-spec.html#linearring"
+  [coordinates] (->LinearRing :LinearRing coordinates))
+
+(defn polygon
+  "Creates a Polygon record with the structure:
+     {:type :Polygon :coordinates [[[1 1] [100 1] [100 100] [1 100] [1 1]]
+                                   [[5 5] [20 5] [20 20] [5 20] [5 5]]
+                                   [[50 50] [80 50] [80 80] [50 80] [50 50]]]}
+
+   Where each vector of coordinates forms a valid linear-ring,
+   one for the exterior polygon shell and multiple for the interior holes.
+
+  http://www.geojson.org/geojson-spec.html#polygon"
+  [coordinates] (->Polygon :Polygon coordinates))
+
+
+(defn multi-point
+  "Creates a MultiPoint record with the structure:
+     {:type :MultiPoint :coordinates [[1 20] [45 5] [10 34]]}
+
+   A sequence of coordinates.
+
+  http://www.geojson.org/geojson-spec.html#multipoint"
+  [coordinates] (->MultiPoint :MultiPoint coordinates))
+
+(defn multi-line-string [coordinates] (->MultiLineString :MultiLineString coordinates))
+(defn multi-polygon [coordinates] (->MultiPolygon :MultiPolygon coordinates))
 (defn geometry-collection [geometries] (->GeometryCollection :GeometryCollection geometries))
 
 (defn map->geometry [{:keys [type coordinates] :as geom}]
