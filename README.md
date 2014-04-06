@@ -11,6 +11,12 @@ The supported operations include Constructive Solid Geometry operations, spatial
 
 Shapes provides similar functionality to [The Java Topology Suite] (http://www.vividsolutions.com/jts/main.htm) and the Python project [shapely] (http://gispython.org/shapely/manual.html).
 
+## Installation
+
+Add the following dependency to your `project.clj` file:
+
+    [meridian/shapes "0.0.2"]
+
 ## Usage
 
 Shapes has a base representation for geometry. The geometry are represented by standard Clojure datastructures (maps or records). These geometry structures map directly to the structures used in the [GeoJSON] (http://www.geojson.org/) specification. This conformance to the GeoJSON specification means that Shapes gets standardisation for free.
@@ -34,6 +40,10 @@ Shapes defines a rich set of common abstractions:
 ConstructiveSolidGeometry, SpatialConstruction, SpatialRelations, Measurable, Locatable and SimplicityTest
 
 Shapes does not come with a default implementation of these abstractions. You can however use the default provided by Meridian [Shapes-impl] (http://github.com/jsofra/shapes-impl).
+
+Add the following dependency to your `project.clj` file:
+
+    [meridian/shapes-impl "0.0.2"]
 
 #### Constructive Solid Geometry
 The ConstructiveSolidGeometry abstraction provides a set of operations:
